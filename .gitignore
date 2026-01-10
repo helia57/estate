@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# Odoo
+*.log
+.odoo*
+.session
+filestore/
+
+# Environnements
+.env
+venv/
+
+# Docker
+*.pid
+
+# OS
+.DS_Store
+Thumbs.db
+
+addons/
+odoo.conf
