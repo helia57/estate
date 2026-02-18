@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="estate_property_demo_1" model="estate.property">
+        <field name="name">Demo House</field>
+        <field name="description">A beautiful demo property for testing.</field>
+        <field name="postcode">12345</field>
+        <field name="date_availability" type="date">2025-01-01</field>
+        <field name="expected_price" type="float">250000</field>
+        <field name="selling_price" type="float">0</field>
+        <field name="bedrooms" type="int">3</field>
+        <field name="living_area" type="int">120</field>
+        <field name="facades" type="int">2</field>
+        <field name="garage" type="bool">True</field>
+        <field name="garden" type="bool">True</field>
+        <field name="garden_area" type="int">60</field>
+        <field name="garden_orientation">south</field>
+    </record>
+</odoo>

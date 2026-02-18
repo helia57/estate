@@ -1,0 +1,29 @@
+<t t-name="estate.EstatePropertyList">
+
+  <!-- Barre de total (reste fixe visuellement) -->
+  <div class="mb-2 p-2 border rounded bg-light estate_property_list__header">
+    <strong>Sélection :</strong> <t t-esc="selectedCount"/>
+    <span class="mx-2">—</span>
+    <strong>Total :</strong> <t t-esc="selectedTotalFormatted"/>
+
+    <button type="button"
+            class="btn btn-sm btn-outline-danger ms-2"
+            t-on-click="clearSelection"
+            t-if="selectedCount">
+      Clear
+    </button>
+  </div>
+
+  <!--  Zone scrollable -->
+  <div class="estate_property_list estate_property_list--scroll">
+    <t t-foreach="properties" t-as="property" t-key="property.id">
+      <EstatePropertyCard
+        property="property"
+        selected="!!state.selected[property.id]"
+        onToggleSelect="() => onToggleSelect(property.id)"
+        onReload="loadProperties"
+      />
+    </t>
+  </div>
+
+</t>

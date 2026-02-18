@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_owl_test" model="ir.actions.client">
+        <field name="name">OWL Test</field>
+        <field name="tag">tr_backend_font.owl_test</field>
+    </record>
+
+    <menuitem
+        id="menu_owl_test"
+        name="OWL Test"
+        parent="base.menu_custom"
+        action="action_owl_test"/>
+</odoo>

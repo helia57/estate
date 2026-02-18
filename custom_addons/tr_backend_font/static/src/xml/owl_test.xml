@@ -1,0 +1,15 @@
+<t t-name="tr_backend_font.OwlTest">
+    <div style="padding: 24px;">
+        <h2>🦉 OWL fonctionne !</h2>
+
+        <t t-if="state">
+            <p>Compteur : <strong t-esc="state.count"/></p>
+
+            <button
+                class="btn btn-primary"
+                t-on-click="increment">
+                +1
+            </button>
+        </t>
+    </div>
+</t>

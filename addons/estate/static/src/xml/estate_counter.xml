@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="estate.EstateCounter">
+        <div class="o_box p-2">
+
+            <h4>🏠 Estate OWL Widget</h4>
+
+            <!-- Infos métier -->
+            <ul class="list-unstyled mb-2">
+                <li><strong>Name:</strong> <t t-esc="propertyName"/></li>
+                <li><strong>Expected price:</strong> <t t-esc="expectedPrice"/></li>
+                <li><strong>State:</strong> <t t-esc="propertyState"/></li>
+            </ul>
+
+            <!-- ✅ Feedback exercice -->
+            <t t-if="showWellDone">
+                <div class="alert alert-success mb-2" role="alert">
+                    <strong>Well Done!</strong>
+                </div>
+            </t>
+            <t t-elif="showCanDoBetter">
+                <div class="alert alert-danger mb-2" role="alert">
+                    <strong>You can do better!</strong>
+                </div>
+            </t>
+
+            <hr/>
+
+            <!-- Motivation -->
+            <h5 class="mb-1">😊 Motivation</h5>
+
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <span style="font-size: 2rem; cursor: pointer;"
+                      t-on-click="onClickMotivation"
+                      title="Cliquer pour focus sur la saisie">
+                    <t t-esc="moodEmoji"/>
+                </span>
+
+                <!-- ✅ compteur affiché UNIQUEMENT si angry -->
+                <t t-if="isAngry">
+                    <span class="badge bg-danger ms-2">
+                        Angry count today: <t t-esc="angryCounter.state.count"/>
+                    </span>
+                </t>
+
+                <span>
+                    Offers received:
+                    <strong><t t-esc="state.offerCount"/></strong>
+                </span>
+            </div>
+
+            <hr/>
+
+            <!-- Weather service -->
+            <h5 class="mb-1">🌤 Weather (service)</h5>
+
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                <t t-foreach="weather.availableCities" t-as="c" t-key="c">
+                    <button type="button"
+                            class="btn btn-sm btn-outline-primary"
+                            t-att-data-city="c"
+                            t-on-click="onLoadWeather">
+                        <t t-esc="c"/>
+                    </button>
+                </t>
+            </div>
+
+            <t t-if="weather.state.loading">
+                <div class="text-muted">⏳ Chargement météo...</div>
+            </t>
+
+            <t t-if="weather.state.error">
+                <div class="text-danger">⚠ <t t-esc="weather.state.error"/></div>
+            </t>
+
+            <t t-if="!weather.state.loading and !weather.state.error and weather.state.temperature !== null">
+                <div class="mb-2">
+                    <strong><t t-esc="weather.state.city"/></strong> :
+                    <span>🌡 <t t-esc="weather.state.temperature"/> °C</span>
+                    <span class="ms-2">💨 <t t-esc="weather.state.windspeed"/> km/h</span>
+                </div>
+            </t>
+
+            <hr/>
+
+            <!-- Calculator input -->
+            <div class="mt-2">
+                <label class="form-label mb-1">Calculator input</label>
+                <input type="number"
+                       class="form-control"
+                       t-ref="calculatorInput"
+                       placeholder="Saisir un montant..."/>
+                <small class="text-muted">Cliquez sur le smiley pour mettre le focus ici.</small>
+            </div>
+
+        </div>
+    </t>
+
+</templates>

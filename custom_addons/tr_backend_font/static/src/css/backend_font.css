@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap");
+
+/* 🔴 POINT CLÉ Odoo 19 */
+.o_web_client,
+.o_web_client * {
+    --body-font-family: "Oswald", sans-serif !important;
+}
+
+/* Navbar (visuel immédiat) */
+.o_main_navbar,
+.o_main_navbar * {
+    font-family: "Oswald", sans-serif !important;
+}

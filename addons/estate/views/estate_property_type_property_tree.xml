@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_estate_property_list_inline" model="ir.ui.view">
+        <field name="name">estate.property.list.inline</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+                <field name="expected_price"/>
+                <field name="state" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

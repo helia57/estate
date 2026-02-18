@@ -1,0 +1,38 @@
+<odoo>
+  <template id="website_properties" name="Estate Properties">
+    <t t-call="website.layout">
+      <div class="container my-5">
+        <h1 class="mb-4">Nos biens</h1>
+
+        <section class="estate_property_list">
+            <t t-foreach="properties" t-as="p">
+                <div t-att-class="'card p-3 estate_card--' + (p.state or 'default')">
+
+                    <!-- Bandeau diagonal (sold/new uniquement) -->
+                    <t t-if="p.state == 'sold'">
+                        <div class="estate_ribbon estate_ribbon--sold">VENDU</div>
+                    </t>
+                    <t t-elif="p.state == 'new'">
+                        <div class="estate_ribbon estate_ribbon--new">NOUVEAU</div>
+                    </t>
+
+                    <t t-if="p.image_main">
+                        <img class="estate_card__image mb-2"
+                            t-att-src="'/web/image/estate.property/%s/image_main' % p.id"
+                            alt="Photo du bien"/>
+                    </t>
+
+                    <h5 class="mb-2"><t t-esc="p.name"/></h5>
+
+                    <small>
+                        Prix : <t t-esc="p.expected_price"/> €
+                    </small>
+
+                </div>
+            </t>
+        </section>
+
+      </div>
+    </t>
+  </template>
+</odoo>

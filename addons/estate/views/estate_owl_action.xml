@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="action_estate_owl_demo" model="ir.actions.client">
+    <field name="name">Estate OWL Demo</field>
+    <field name="tag">estate_owl_demo</field>
+  </record>
+
+</odoo>

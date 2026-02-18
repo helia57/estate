@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================= -->
+    <!--        ROOT MENU              -->
+    <!-- ============================= -->
+    <menuitem id="estate_menu_root"
+              name="Estate"
+              sequence="10"/>
+
+    <!-- ============================= -->
+    <!--        PROPERTIES              -->
+    <!-- ============================= -->
+    <menuitem id="estate_menu_property_types"
+          name="Property Types"
+          parent="estate_menu_root"
+          action="action_estate_property_type"
+          sequence="15"/>
+    
+    
+    <menuitem id="estate_menu_properties"
+              name="Properties"
+              parent="estate_menu_root"
+              action="action_estate_property"
+              sequence="20"/>
+
+     <menuitem id="estate_property_tag_menu"
+          name="Property Tags"
+          parent="estate_menu_root"
+          action="estate_property_tag_action"
+          sequence="25"/>
+
+    <!-- ============================= -->
+    <!--          OFFERS               -->
+    <!-- ============================= -->
+    <menuitem id="estate_menu_offers"
+          name="Offers"
+          parent="estate_menu_root"
+          action="action_estate_property_offer_all"
+          sequence="30"/>
+
+    
+       <!-- ============================= -->
+      <!--        OWL DEMO               -->
+      <!-- ============================= -->
+
+      <menuitem id="estate_menu_owl_demo"
+            name="Estate OWL Demo"
+            parent="estate_menu_root"
+            action="action_estate_owl_demo"
+            sequence="40"/>
+
+</odoo>

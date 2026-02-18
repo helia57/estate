@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+  <t t-name="estate.EstatePropertyCard">
+    <div t-att-class="'card p-3 ' + cardClass + ' ' + typeClass">
+
+      <!-- ✅ Ruban état (site web uniquement) -->
+      <t t-if="props.readonly">
+        <t t-if="props.property.state === 'sold'">
+          <div class="estate_ribbon estate_ribbon--sold">VENDU</div>
+        </t>
+        <t t-elif="props.property.state === 'new'">
+          <div class="estate_ribbon estate_ribbon--new">NOUVEAU</div>
+        </t>
+      </t>
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div class="d-flex align-items-center">
+          <i class="fa me-2" t-att-class="typeIcon" title="Type de propriété"></i>
+          <h5 class="mb-0"><t t-esc="props.property.name"/></h5>
+        </div>
+
+        <!-- ✅ Bouton Select masqué sur site (readonly) -->
+        <button t-if="!props.readonly"
+                type="button"
+                class="btn btn-sm"
+                t-att-class="props.selected ? 'btn-success' : 'btn-outline-secondary'"
+                t-on-click="onToggleSelectClick">
+          <t t-esc="props.selected ? 'Selected' : 'Select'"/>
+        </button>
+      </div>
+
+      <!-- Photo -->
+      <t t-if="props.property.image_main">
+        <img class="estate_card__image mb-2"
+             t-att-src="'/web/image/estate.property/' + props.property.id + '/image_main?unique=' + Date.now()"
+             alt="Photo du bien"/>
+      </t>
+
+      <!-- ✅ Messages : visibles uniquement en back-office ET selon l'état -->
+      <t t-if="!props.readonly">
+        <t t-if="showWellDone">
+          <div class="alert alert-success mb-2" role="alert">
+            <strong>Well Done!</strong>
+          </div>
+        </t>
+        <t t-elif="showCanDoBetter">
+          <div class="alert alert-danger mb-2" role="alert">
+            <strong>You can do better!</strong>
+          </div>
+        </t>
+      </t>
+
+      <t t-slot="details"/>
+
+      <small>
+        Prix : <t t-esc="props.property.expected_price"/> €
+      </small>
+
+      <!-- ✅ Actions photo masquées sur site (readonly) -->
+      <t t-if="!props.readonly">
+        <div class="d-flex gap-2 mt-2">
+          <button t-if="!props.property.image_main"
+                  type="button"
+                  class="btn btn-sm btn-primary"
+                  t-on-click="onUploadClick">
+            📷 Ajouter une photo
+          </button>
+
+          <t t-else="">
+            <button type="button"
+                    class="btn btn-sm btn-secondary"
+                    t-on-click="onUploadClick">
+              ✏️ Modifier
+            </button>
+
+            <button type="button"
+                    class="btn btn-sm btn-outline-danger"
+                    t-on-click="onDeletePhotoClick">
+              🗑️ Supprimer
+            </button>
+          </t>
+        </div>
+
+        <input type="file"
+               t-ref="fileInput"
+               accept="image/*"
+               style="display:none"
+               t-on-change="onFileSelected"/>
+      </t>
+
+    </div>
+  </t>
+
+</templates>
